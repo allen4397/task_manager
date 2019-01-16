@@ -7,4 +7,8 @@ class Task
     @database     = SQLite3::Database.new('db/task_manager_development.db')
     @database.results_as_hash = true
   end
+
+  def save
+    @database.execute("INSERT INTO tasks (title, description) VALUES (?, ?);", @title, @description)
+  end
 end
